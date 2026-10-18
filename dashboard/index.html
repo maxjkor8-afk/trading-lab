@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>trading-lab</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="mark">trading-lab</span>
+    <span class="sep">/</span>
+    <span id="run-title">loading</span>
+  </div>
+  <div class="headline" id="headline"></div>
+  <span id="status">starting</span>
+</header>
+
+<section class="controls">
+  <div class="field">
+    <label for="dataset">Dataset</label>
+    <select id="dataset"></select>
+  </div>
+  <div class="field">
+    <label for="strategy">Strategy</label>
+    <select id="strategy"><option value="buy_and_hold">buy_and_hold</option></select>
+  </div>
+  <div class="field">
+    <label for="cash">Cash</label>
+    <input id="cash" type="number" value="10000" min="1" step="1000">
+  </div>
+  <div class="field">
+    <label for="instrument">Instrument</label>
+    <select id="instrument">
+      <option value="spot">spot</option>
+      <option value="perp">perp</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="venue">Venue</label>
+    <select id="venue">
+      <option value="">worst case</option>
+      <option value="binance">binance</option>
+      <option value="bybit">bybit</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="half_spread_bps">Half spread bps</label>
+    <input id="half_spread_bps" type="number" value="5" min="0" step="0.5">
+  </div>
+  <div class="field">
+    <label for="depth_quote">Depth quote</label>
+    <input id="depth_quote" type="number" value="250000" min="1" step="10000">
+  </div>
+  <label class="toggle"><input type="checkbox" id="zero_costs"> zero costs</label>
+  <label class="toggle"><input type="checkbox" id="compare" checked> control overlay</label>
+  <button id="run">Run</button>
+</section>
+
+<main>
+
+  <div class="left">
+
+    <section class="card">
+      <h2>Cumulative return
+        <span class="legend">
+          <span><i class="line solid"></i>after costs</span>
+          <span><i class="line dash"></i>cost-free control</span>
+        </span>
+      </h2>
+      <div class="chart" id="returns-chart"></div>
+    </section>
+
+    <section class="card">
+      <h2>Underwater <span class="note">percent below the running peak</span></h2>
+      <div class="chart short" id="drawdown-chart"></div>
+    </section>
+
+    <section class="card">
+      <h2>Rolling Sharpe <span class="note">60-bar window, annualised</span></h2>
+      <div class="chart short" id="sharpe-chart"></div>
+    </section>
+
+    <section class="card">
+      <h2>Monthly returns</h2>
+      <div id="heatmap"></div>
+    </section>
+
+    <section class="card">
+      <h2>Price &amp; fills <span class="note" id="cost-description"></span></h2>
+      <div class="chart" id="price-chart"></div>
+    </section>
+
+  </div>
+
+  <div class="right">
+
+    <section class="card">
+      <h2>Key performance metrics</h2>
+      <table id="metrics"></table>
+    </section>
+
+    <section class="card">
+      <h2>Worst drawdowns</h2>
+      <div id="drawdowns"></div>
+    </section>
+
+    <section class="card">
+      <h2>Returns by year</h2>
+      <div id="eoy"></div>
+    </section>
+
+    <section class="card">
+      <h2>Fills</h2>
+      <div id="fills"></div>
+    </section>
+
+    <section class="card">
+      <h2>CLI report, verbatim</h2>
+      <pre id="report"></pre>
+    </section>
+
+  </div>
+
+</main>
+
+<footer>
+  Charts by <a href="https://github.com/tradingview/lightweight-charts" target="_blank" rel="noreferrer">Lightweight Charts</a>
+  (Apache-2.0), loaded from a CDN by this page. The Python in this repository still has zero third-party dependencies.
+  Layout follows the <a href="https://github.com/ranaroussi/quantstats" target="_blank" rel="noreferrer">QuantStats</a> tearsheet convention.
+</footer>
+
+<script src="https://unpkg.com/lightweight-charts@5.2.1/dist/lightweight-charts.standalone.production.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

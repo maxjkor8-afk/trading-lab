@@ -5,3 +5,6 @@ __pycache__/
 
 # Local note to self about pushing this repo; not part of the project.
 PUSH.md
+
+# Editor/agent tooling, not part of the project.
+.claude/

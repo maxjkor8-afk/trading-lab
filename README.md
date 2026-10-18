@@ -79,6 +79,32 @@ gross pnl         15,556.13
 costs / gross pnl 0.10%
 ```
 
+### Seeing a run
+
+There is an optional local dashboard. It is the same `run_backtest` call, drawn:
+
+```bash
+python scripts/serve_dashboard.py        # http://127.0.0.1:8765
+```
+
+It lays a run out as a tearsheet: cumulative return with a **cost-free control
+run** dashed behind it, the underwater plot, rolling Sharpe, a monthly returns
+heatmap, the worst drawdown periods with their recovery dates, and every metric
+in two columns — after costs, and the control. The gap between those two
+columns is what trading cost, read off rather than taken on trust. Dataset,
+venue, instrument and the cost parameters are controls on the page, and the
+backtest re-runs on the server as you change them.
+
+The dashboard computes nothing itself. Every number on it comes back from the
+same call `scripts/run_backtest.py` makes, so there is no second implementation
+of the arithmetic that could drift from the tested one.
+
+The server is `http.server` from the standard library, so the Python side of
+this repository still has no third-party dependencies. The page loads
+[Lightweight Charts](https://github.com/tradingview/lightweight-charts)
+(Apache-2.0) from a CDN, which is the only part of the project that needs a
+network connection.
+
 ### What this is not
 
 No LLM code. No exchange connection. No API keys. No order placement of any
