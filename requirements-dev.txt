@@ -1,0 +1,3 @@
+# The harness itself has no third-party dependencies - standard library only.
+# This file exists for the test runner and nothing else.
+pytest>=8

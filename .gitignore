@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local note to self about pushing this repo; not part of the project.
+PUSH.md

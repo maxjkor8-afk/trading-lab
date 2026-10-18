@@ -1,0 +1,5 @@
+# Normalise text, but leave the bundled market data byte-for-byte identical on
+# every platform. The acceptance gate reads these CSVs directly and compares the
+# result to a hand calculation, so the bytes are part of the fixture.
+* text=auto
+*.csv -text

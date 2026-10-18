@@ -1,0 +1,10 @@
+{
+  "source": "coinbase",
+  "symbol": "BTC-USD",
+  "interval": "1d",
+  "bars": 366,
+  "first_open": "2022-12-31T00:00:00+00:00",
+  "last_open": "2023-12-31T00:00:00+00:00",
+  "fetched_at": "2026-10-18T14:09:51.800887+00:00",
+  "note": "Public historical endpoint, read-only. close_time = open_time + interval; the harness treats close_time as the moment the bar becomes knowable."
+}
